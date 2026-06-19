@@ -734,9 +734,9 @@ function htmlEnt(filt='') {
     <td style="max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${x.desc||'—'}</td>
     <td class="pos">+ ${fR(x.valor)}</td>
     <td style="white-space:nowrap">
-      <button onclick="transferir(${x.id})" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Transferir para empresa">🔀</button>
-      <button onclick="editar(${x.id})" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Editar">✏️</button>
-      <button onclick="del(${x.id})" style="background:none;border:none;color:#bbb;cursor:pointer" title="Excluir">✕</button>
+      <button onclick="transferir('${x.id}')" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Transferir para empresa">🔀</button>
+      <button onclick="editar('${x.id}')" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Editar">✏️</button>
+      <button onclick="del('${x.id}')" style="background:none;border:none;color:#bbb;cursor:pointer" title="Excluir">✕</button>
     </td>
   </tr>`);
   return `
@@ -787,9 +787,9 @@ function htmlSai(fCat='',fTipo='') {
     <td><span class="tag ${x.tipof==='Fixo'?'tb':'ty'}">${x.tipof||'Variável'}</span></td>
     <td class="neg">- ${fR(x.valor)}</td>
     <td style="white-space:nowrap">
-      <button onclick="transferir(${x.id})" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Transferir para empresa">🔀</button>
-      <button onclick="editar(${x.id})" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Editar">✏️</button>
-      <button onclick="del(${x.id})" style="background:none;border:none;color:#bbb;cursor:pointer" title="Excluir">✕</button>
+      <button onclick="transferir('${x.id}')" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Transferir para empresa">🔀</button>
+      <button onclick="editar('${x.id}')" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Editar">✏️</button>
+      <button onclick="del('${x.id}')" style="background:none;border:none;color:#bbb;cursor:pointer" title="Excluir">✕</button>
     </td>
   </tr>`);
   return `
@@ -863,9 +863,9 @@ function htmlCar(fCart='',modoFatura=false,fCat='') {
     <td style="color:#8a8a80;font-size:.78em;white-space:nowrap">${x.faturaManual?'✏️':'📋'} ${fML(mesFatura(x.data,x.cartao,x.historico,x.faturaManual))}</td>
     <td style="color:#6a1b9a;font-family:'Courier New',monospace;font-weight:600;white-space:nowrap">- ${fR(x.valor)}</td>
     <td style="white-space:nowrap">
-      <button onclick="transferir(${x.id})" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Transferir para empresa">🔀</button>
-      <button onclick="editar(${x.id})" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Editar">✏️</button>
-      <button onclick="del(${x.id})" style="background:none;border:none;color:#bbb;cursor:pointer" title="Excluir">✕</button>
+      <button onclick="transferir('${x.id}')" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Transferir para empresa">🔀</button>
+      <button onclick="editar('${x.id}')" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Editar">✏️</button>
+      <button onclick="del('${x.id}')" style="background:none;border:none;color:#bbb;cursor:pointer" title="Excluir">✕</button>
     </td>
   </tr>`);
   // Chips por categoria
@@ -1035,7 +1035,7 @@ function htmlEmpRec(fEmp='',fCanal='') {
     <td style="white-space:nowrap">
       <button onclick="transferirE(${x.id})" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Transferir para pessoal">🔀</button>
       <button onclick="editarE(${x.id})" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Editar">✏️</button>
-      <button onclick="delE(${x.id})" style="background:none;border:none;color:#bbb;cursor:pointer" title="Excluir">✕</button>
+      <button onclick="delE('${x.id}')" style="background:none;border:none;color:#bbb;cursor:pointer" title="Excluir">✕</button>
     </td>
   </tr>`);
   return `<div class="card">
@@ -1089,7 +1089,7 @@ function htmlEmpCus(fEmp='',fCat='') {
     <td style="white-space:nowrap">
       <button onclick="transferirE(${x.id})" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Transferir para pessoal">🔀</button>
       <button onclick="editarE(${x.id})" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Editar">✏️</button>
-      <button onclick="delE(${x.id})" style="background:none;border:none;color:#bbb;cursor:pointer" title="Excluir">✕</button>
+      <button onclick="delE('${x.id}')" style="background:none;border:none;color:#bbb;cursor:pointer" title="Excluir">✕</button>
     </td>
   </tr>`);
   return `<div class="card">
@@ -1464,7 +1464,7 @@ function htmlEmpCar(fEmp='',fCart='',modoFatura=false,fCatE='') {
     <td style="white-space:nowrap">
       <button onclick="transferirE(${x.id})" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Transferir para pessoal">🔀</button>
       <button onclick="editarE(${x.id})" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Editar">✏️</button>
-      <button onclick="delE(${x.id})" style="background:none;border:none;color:#bbb;cursor:pointer" title="Excluir">✕</button>
+      <button onclick="delE('${x.id}')" style="background:none;border:none;color:#bbb;cursor:pointer" title="Excluir">✕</button>
     </td>
   </tr>`);
 
