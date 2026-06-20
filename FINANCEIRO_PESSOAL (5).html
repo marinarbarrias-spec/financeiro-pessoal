@@ -1281,7 +1281,13 @@ function abrirModalEmp(tipo) {
       <div class="form-group"><label class="form-label">Categoria</label><select class="form-select" id="m-cat">
         <option>Insumos</option><option>Pão</option><option>Atacado</option><option>Sacolão</option><option>Bebidas</option><option>Equipe</option><option>Fixos DOG</option><option>Ads</option><option>Ferramentas</option><option>Fiscal</option><option>Pagamento Cartão</option><option>Pagamento Fatura</option>
       </select></div>
-      <div class="form-group"><label class="form-label">Pagamento</label><select class="form-select" id="m-pgto"><option>Inter</option><option>Pix</option><option>Dinheiro</option><option>Santander</option><option>Nubank</option><option>Latam</option><option>Inter Marina</option></select></div>
+      <div class="form-group"><label class="form-label">Pagamento</label><select class="form-select" id="m-pgto" onchange="toggleFaturaEmp()"><option>Inter</option><option>Pix</option><option>Dinheiro</option><option>Santander</option><option>Nubank</option><option>Latam</option><option>Inter Marina</option></select></div>
+      <div class="form-group" id="m-fatura-emp-wrap" style="display:none"><label class="form-label">Fatura (vazio = calcular automaticamente pela data de virada)</label>
+        <select class="form-select" id="m-fatura-emp">
+          <option value="">Calcular automaticamente</option>
+          ${(()=>{const opts=[];const hoje=new Date();for(let i=-1;i<=12;i++){const d=new Date(hoje.getFullYear(),hoje.getMonth()+i,1);const v=d.getFullYear()+'-'+(String(d.getMonth()+1).padStart(2,'0'));opts.push(`<option value="${v}">${fML(v)}</option>`);}return opts.join('');})()}
+        </select>
+      </div>
       <div class="form-group form-full"><label class="form-label">Descrição</label><input type="text" class="form-input" id="m-desc" placeholder="Ex: Trem Bão insumos"></div>
       <div class="form-group"><label class="form-label">Valor (R$)</label><input type="number" class="form-input" id="m-val" step="0.01" placeholder="0,00"></div>
     </div>`;
@@ -1289,7 +1295,12 @@ function abrirModalEmp(tipo) {
   document.getElementById('modal').classList.add('on');
 }
 
-function fecharModal(){ document.getElementById('modal').classList.remove('on'); MTIPO=null; window._editId=null; window._editDb=null; }
+function toggleFaturaEmp(){
+  const pgto=document.getElementById('m-pgto')?.value||'';
+  const wrap=document.getElementById('m-fatura-emp-wrap');
+  if(wrap) wrap.style.display=['Pix','Dinheiro',''].includes(pgto)?'none':'';
+}
+
 
 function salvar() {
   // Transferência não precisa de data/valor - tratar primeiro
@@ -1384,7 +1395,8 @@ function salvar() {
     const emp=document.getElementById('m-emp')?.value||'DOG';
     const cat=document.getElementById('m-cat')?.value||'Insumos';
     const pgto=document.getElementById('m-pgto')?.value||'Pix';
-    E.l.push({id,tipo:'custo',data,empresa:emp,categoria:cat,cartao:pgto,desc,valor:val,parcela:'À vista'});
+    const faturaEmp=document.getElementById('m-fatura-emp')?.value||'';
+    E.l.push({id,tipo:'custo',data,empresa:emp,categoria:cat,cartao:pgto,desc,valor:val,parcela:'À vista',...(faturaEmp?{faturaManual:faturaEmp}:{})});
   }
   // Se for edição, remove o lançamento antigo
   if(window._editId) {
