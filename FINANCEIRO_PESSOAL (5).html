@@ -1199,7 +1199,7 @@ function editarE(id) {
     m('m-desc', l.desc||'');
     m('m-emp', l.empresa||'DOG');
     if(tipo==='receita') m('m-canal', l.canal||'Dinheiro');
-    if(tipo==='custo'){ m('m-cat', l.categoria||'Insumos'); m('m-pgto', l.cartao||'Inter'); }
+    if(tipo==='custo'){ m('m-cat', l.categoria||'Insumos'); m('m-pgto', l.cartao||'Inter'); toggleFaturaEmp(); if(l.faturaManual) m('m-fatura-emp', l.faturaManual); }
     document.getElementById('modal-title').textContent = 'Editar Lançamento';
     window._editId = id; window._editDb = 'E';
   }, 50);
@@ -1293,7 +1293,10 @@ function abrirModalEmp(tipo) {
     </div>`;
   }
   document.getElementById('modal').classList.add('on');
+  setTimeout(toggleFaturaEmp, 0);
 }
+
+function fecharModal(){ document.getElementById('modal').classList.remove('on'); MTIPO=null; window._editId=null; window._editDb=null; }
 
 function toggleFaturaEmp(){
   const pgto=document.getElementById('m-pgto')?.value||'';
