@@ -1034,7 +1034,7 @@ function htmlEmpRec(fEmp='',fCanal='') {
     <td class="pos">+ ${fR(x.valor)}</td>
     <td style="white-space:nowrap">
       <button onclick="transferirE(${x.id})" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Transferir para pessoal">🔀</button>
-      <button onclick="editarE(${x.id})" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Editar">✏️</button>
+      <button onclick="editarE('${x.id}')" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Editar">✏️</button>
       <button onclick="delE('${x.id}')" style="background:none;border:none;color:#bbb;cursor:pointer" title="Excluir">✕</button>
     </td>
   </tr>`);
@@ -1088,7 +1088,7 @@ function htmlEmpCus(fEmp='',fCat='') {
     <td class="neg">- ${fR(x.valor)}</td>
     <td style="white-space:nowrap">
       <button onclick="transferirE(${x.id})" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Transferir para pessoal">🔀</button>
-      <button onclick="editarE(${x.id})" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Editar">✏️</button>
+      <button onclick="editarE('${x.id}')" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Editar">✏️</button>
       <button onclick="delE('${x.id}')" style="background:none;border:none;color:#bbb;cursor:pointer" title="Excluir">✕</button>
     </td>
   </tr>`);
@@ -1478,7 +1478,7 @@ function htmlEmpCar(fEmp='',fCart='',modoFatura=false,fCatE='') {
     <td class="neg" style="white-space:nowrap">- ${fR(x.valor)}</td>
     <td style="white-space:nowrap">
       <button onclick="transferirE(${x.id})" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Transferir para pessoal">🔀</button>
-      <button onclick="editarE(${x.id})" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Editar">✏️</button>
+      <button onclick="editarE('${x.id}')" style="background:none;border:none;color:#9a9a90;cursor:pointer;margin-right:4px" title="Editar">✏️</button>
       <button onclick="delE('${x.id}')" style="background:none;border:none;color:#bbb;cursor:pointer" title="Excluir">✕</button>
     </td>
   </tr>`);
@@ -1668,7 +1668,7 @@ function htmlFaturas(modoFatura=false, mesSel=null) {
       <td class="mono">${x.parcela||'À vista'}</td>
       <td style="font-family:'Courier New',monospace;font-weight:600;color:${CORC2[r.cart]};white-space:nowrap">- ${fR(x.valor)}</td>
       <td style="white-space:nowrap">
-        <button onclick="${x._o==='P'?`editar(${x.id})`:`editarE(${x.id})`}" style="background:none;border:none;color:#9a9a90;cursor:pointer">✏️</button>
+        <button onclick="${x._o==='P'?`editar('${x.id}')`:`editarE('${x.id}')`}" style="background:none;border:none;color:#9a9a90;cursor:pointer">✏️</button>
         <button onclick="${x._o==='P'?`transferir(${x.id})`:`transferirE(${x.id})`}" style="background:none;border:none;color:#9a9a90;cursor:pointer">🔀</button>
       </td>
     </tr>`).join('');
